@@ -1,0 +1,27 @@
+from fabric.api import env, task
+
+'''
+@task
+def setup_hosts():
+  env.hosts = ['host.domain.com']
+'''
+
+def setup_site_environment():
+  #env.keep_releases = 5
+
+  env.site_name = 'mypiwik'
+  env.site_user = 'mywebuser' # eg. www-data, or piwik
+  env.scm_uri   = 'git://github.com/piwik/piwik.git'
+
+  env.hosts = [ 'host.domain.com']
+
+  # DB credentials
+  env.db_pass = 'mypassword'
+  env.db_user = 'myuser'
+  env.db_name = 'mydb'
+  if (env.stage == 'uat'):
+    env.db_host = 'mysql-uat.domain.com'
+  elif (env.stage == 'production'):
+    env.db_host = 'mysql.domain.com'
+
+
